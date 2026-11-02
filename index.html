@@ -61,7 +61,7 @@ section{position:relative}
 }
 
 /* ============ Layers (decorative images) — base = small screens ============ */
-.layer{position:absolute;max-width:none;pointer-events:none;user-select:none}
+.layer{position:absolute;max-width:none;height:auto;pointer-events:none;user-select:none}
 .z0{z-index:0}.z1{position:relative;z-index:1}
 
 /* ---------- 01 Hero ---------- */
@@ -86,6 +86,14 @@ section{position:relative}
 .svc .btn{width:121px;height:35px;padding:0}
 .svc:hover,.svc:focus-within{box-shadow:0 14px 30px rgba(35,31,32,.2);transform:translateY(-4px)}
 .svc:hover .pic img{transform:scale(1.05)}
+.svc-more{display:grid;grid-template-rows:0fr;margin-top:0;transition:grid-template-rows .6s cubic-bezier(.4,0,.2,1)}
+.svc-more.open{grid-template-rows:1fr}
+.svc-more-in{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .6s}
+.svc-more.open .svc-more-in{visibility:visible;transition-delay:0s}
+.svc-more.open.done .svc-more-in{overflow:visible}
+.svc-more .svc-list{margin-top:0;padding-top:clamp(20px,5vw,61px);opacity:0;transform:translateY(24px);transition:opacity .5s ease .1s,transform .6s cubic-bezier(.2,.7,.2,1) .1s}
+.svc-more.open .svc-list{opacity:1;transform:none}
+#svc-toggle,#svc-contact{width:auto;min-width:135px;white-space:nowrap}
 .cta{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;margin:46px auto 0;width:min(433px,92%)}
 .cta p{font-size:24px;line-height:1.62;font-weight:600}
 @media(max-width:760px){
@@ -129,10 +137,24 @@ section{position:relative}
 .detail p{font-size:15px;max-width:52ch}
 .detail .note{margin-top:12px;font-size:12px;opacity:.6}
 .detail .close{margin-top:20px;width:auto;padding:8px 22px}
+.proj-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.4,0,.2,1)}
+.proj-more.open{grid-template-rows:1fr}
+.proj-more-in{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .6s}
+.proj-more.open .proj-more-in{visibility:visible;transition-delay:0s}
+.proj-more.open.done .proj-more-in{overflow:visible}
+.proj-more .prow:first-child{margin-top:28px}
+.proj-more .prow{opacity:0;transform:translateY(24px);transition:opacity .5s ease .1s,transform .6s cubic-bezier(.2,.7,.2,1) .1s}
+.proj-more.open .prow{opacity:1;transform:none}
+.cta-act{position:relative;display:inline-flex;align-items:center;justify-content:center}
+#work-toggle,#work-contact{width:auto;min-width:135px;white-space:nowrap}
+.btn-x{all:unset;box-sizing:border-box;position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--dark);color:var(--btn-ink);display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;cursor:pointer;transition:background .25s,transform .25s}
+.btn-x[hidden],#work-contact[hidden],#work-toggle[hidden],#svc-contact[hidden],#svc-toggle[hidden]{display:none}
+.btn-x svg{width:16px;height:16px;display:block}
+.btn-x:hover,.btn-x:focus-visible{background:#000;transform:translateY(-50%) rotate(90deg)}
 .work-in .cta{margin-top:22px}
 @media(max-width:760px){
  .prow{grid-template-columns:1fr 1fr;gap:12px}
- .card .t{min-height:0;padding:14px 12px 34px 14px;font-size:12px}.card strong{font-size:14px;margin-bottom:6px}.card .more{left:14px}
+ .card .t{min-height:0;padding:14px 12px 18px 14px;font-size:12px}.card strong{font-size:14px;margin-bottom:6px}.card .more{left:14px}
  .detail .inner{grid-template-columns:1fr;padding:18px}
 }
 
@@ -173,7 +195,7 @@ section{position:relative}
 .ab-in{position:relative;z-index:1;width:min(518px,88%);margin:0 auto;text-align:center}
 .ab-in .h2{margin-bottom:6px}
 .ab-in .sub{font-size:14px}
-.avatar{position:relative;z-index:1;width:min(413px,80%);aspect-ratio:413/471;margin:25px auto 0}
+.avatar{position:relative;z-index:1;width:min(413px,80%);height:auto;aspect-ratio:413/471;object-fit:cover;margin:25px auto 0}
 .who{position:relative;z-index:1;text-align:center}
 .who .name{margin-top:79px;font-size:16px;font-weight:600;line-height:26px}
 .who .meta{margin:22px auto 0;width:min(274px,90%);font-size:14px;line-height:1.62}
@@ -187,13 +209,34 @@ section{position:relative}
 .logos img{max-height:56px;max-width:90%;width:auto;height:auto;mix-blend-mode:multiply}
 .logos img{filter:grayscale(1)}
 @media(min-width:761px){.logos{display:block;position:relative;width:min(683px,88%);aspect-ratio:683/308}.logos li{position:absolute;left:var(--x);top:var(--y);width:var(--w);display:block}.logos img{display:block;width:100%;height:auto;max-width:none;max-height:none}}
-@media(max-width:760px){.logos{gap:18px;grid-auto-rows:60px}.logos img{max-height:40px}}
+@media(max-width:760px){.logos{width:min(360px,92%);gap:12px 8px;grid-auto-rows:64px}.logos img{width:calc(var(--mw)*min(1px,.2564vw));height:auto;max-width:none;max-height:none}}
 
 /* ---------- 08 Contact / footer ---------- */
 #contact{z-index:8;background:var(--dark);color:var(--gray);padding:56px 0 40px;text-align:center;scroll-margin-top:calc(var(--hdr) - 4px)}
 #contact .h2{margin-bottom:6px}
 #contact p.sub{max-width:390px;margin:0 auto}
 #contact .btn{margin-top:63px}
+.ct-grid{width:min(1000px,92%);margin:56px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:80px;text-align:left;align-items:start}
+.ct-form{display:flex;flex-direction:column;gap:24px}
+.ct-form label{display:block;font-size:12px;line-height:1.4;color:#868282;letter-spacing:.02em}
+.ct-form input:not([type=hidden]),.ct-form textarea{display:block;width:100%;margin-top:4px;background:transparent;border:0;border-bottom:1px solid #6d6969;border-radius:0;color:var(--gray);font:400 16px/1.5 var(--font);padding:8px 0;outline:0;transition:border-color .2s;resize:vertical}
+.ct-form input:focus,.ct-form textarea:focus{border-bottom-color:var(--gray)}
+.ct-form b{color:#e8a0a0;font-weight:500}.ct-form .opt{opacity:.8}
+.ct-form.was-validated input:invalid,.ct-form.was-validated textarea:invalid{border-bottom-color:#e8a0a0}
+.ct-form .ct-hp{position:absolute!important;left:-9999px;width:1px!important;height:1px!important;opacity:0;padding:0!important;margin:0!important;border:0!important}
+.ct-send{margin-top:6px}
+#contact .ct-send .btn{width:auto;min-width:135px;border:0;margin-top:0}
+.ct-status{font-size:13px;color:var(--gray);margin-top:14px}.ct-status:empty{display:none}.ct-status.err{color:#e8a0a0}
+.ct-info{display:flex;flex-direction:column;gap:26px;font-size:14px;line-height:1.62;color:var(--gray)}
+.ct-info strong{display:block;font-size:12px;font-weight:500;color:#868282;letter-spacing:.02em;margin-bottom:2px}
+.ct-wa{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--gray);font-size:18px;transition:color .2s}
+.ct-wa:hover{color:#fff}.ct-wa svg{width:34px;height:34px;fill:currentColor;flex:none}
+.ct-wa strong{font-size:12px}
+.ct-addr{font-size:16px}
+.ct-follow .soc{gap:14px;margin-top:6px;margin-left:-8px}
+.ct-map iframe{display:block;width:100%;height:230px;border:0;filter:grayscale(.35) contrast(.95)}
+.ct-map a{display:inline-block;margin-top:8px;font-size:12px;color:#868282;text-decoration:underline;text-underline-offset:3px}.ct-map a:hover{color:var(--gray)}
+@media(max-width:760px){.ct-grid{grid-template-columns:1fr;gap:44px;margin-top:40px}}
 .foot{width:min(1182px,92%);margin:90px auto 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:#868282;text-align:left}
 .foot a{text-decoration:none}.foot a:hover{color:var(--gray)}
 .foot .sep{display:block;height:2px}
@@ -208,6 +251,37 @@ section{position:relative}
    Figma size and stay centred, so wider screens just show more flat
    background, and narrower ones crop the sides.
    ===================================================================== */
+/* ---------- Services lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:20px;background:rgba(255,255,255,.34);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
+.lb[hidden]{display:grid}
+.lb.open{opacity:1;visibility:visible;transition:opacity .35s ease}
+.lb-wrap{position:relative;width:min(1040px,100%)}
+.lb-card{display:grid;grid-template-columns:1.3fr 1fr;max-height:calc(100vh - 40px);max-height:calc(100svh - 40px);overflow:auto;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.7);border-radius:22px;box-shadow:0 30px 80px rgba(35,31,32,.22);transform:translateY(14px) scale(.965);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
+.lb.open .lb-card{transform:none}
+.lb-card.swap{opacity:0}
+.lb-pic{position:relative;min-height:340px;background:#555}
+@media(min-width:821px){.lb-card{height:min(440px,calc(100svh - 40px))}}
+.lb-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lb-txt{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px;padding:44px 44px 40px}
+.lb-count{font-size:12px;letter-spacing:.14em;opacity:.55}
+.lb-txt h3{font-size:clamp(20px,2.4vw,28px);line-height:1.25}
+.lb-txt p{font-size:15px;line-height:1.7}
+.lb-more{opacity:.6;font-size:13px!important}
+.lb-cta{margin-top:10px;padding:11px 26px;font-size:13px}
+.lb-x{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;border:0;border-radius:50%;background:rgba(35,31,32,.55);color:#fff;cursor:pointer;display:grid;place-items:center;padding:0;transition:background .2s,transform .2s}
+.lb-x svg{width:16px;height:16px;display:block}
+.lb-x:hover{background:rgba(35,31,32,.85);transform:scale(1.06)}
+.lb-arrow{position:absolute;top:50%;z-index:3;width:46px;height:46px;margin-top:-23px;padding:0;border:0;border-radius:50%;background:rgba(35,31,32,.35);color:#fff;cursor:pointer;transition:transform .2s,background .2s}
+.lb-arrow svg{width:100%;height:100%;display:block}
+.lb-arrow.prev{left:-66px}.lb-arrow.prev svg{transform:scaleX(-1)}
+.lb-arrow.next{right:-66px}
+.lb-arrow:hover{background:rgba(35,31,32,.7);transform:scale(1.08)}
+.lb button:focus-visible,.lb a:focus-visible{outline:2px solid #fff;outline-offset:2px;box-shadow:0 0 0 4px rgba(35,31,32,.6)}
+html.lb-lock{overflow:hidden}
+@media(max-width:1180px){.lb-arrow.prev{left:10px}.lb-arrow.next{right:10px}.lb-arrow{top:min(26vw,170px);top:min(26vw,190px)}}
+@media(max-width:820px){.lb{align-items:start;padding-top:max(16px,env(safe-area-inset-top,0px))}.lb-card{grid-template-columns:1fr}.lb-pic{min-height:0;aspect-ratio:500/348}.lb-txt{padding:26px 22px 30px}.lb-arrow{width:40px;height:40px;margin-top:-20px;top:calc((100vw - 40px) * .348)}}
+@media(prefers-reduced-motion:reduce){.lb,.lb-card{transition:none}}
+
 /* ============ Breakpoints ============
    Mobile portrait  : up to 599px  (designed at 390)
    Tablet           : 600px – 1199px (designed at 768, checked at 1024)
@@ -225,7 +299,7 @@ section{position:relative}
  .prow+.detail+.prow{margin-top:14px}
  .card{flex-direction:row}
  .card .pic{flex:0 0 38%;aspect-ratio:auto;min-height:168px}
- .card .t{flex:1;min-height:0;padding:16px 14px 38px 16px;font-size:13px}
+ .card .t{flex:1;min-height:0;padding:16px 14px 20px 16px;font-size:13px}
  .card strong{font-size:15px;margin-bottom:6px}
  .card .more{left:16px}
  .detail .inner{padding:16px;gap:18px}
@@ -253,11 +327,14 @@ section{position:relative}
  #home .fly{position:absolute;left:5px;top:320px;margin:0;white-space:nowrap}
  /* services */
  #services{height:1579px;padding:4px 0 0}
- #services .swarm{top:269px;left:50%;margin-left:-960px;width:1920px;transform:none;opacity:1}
+ #services .swarm{top:calc(269px + var(--xs,0px));left:50%;margin-left:-960px;width:1920px;transform:none;opacity:1;transition:top .6s cubic-bezier(.4,0,.2,1)}
  #services .h2{height:78px;display:flex;align-items:center;justify-content:center}
- .svc-list{width:1001px;margin-top:22px;gap:61px}
- .svc{height:348px;min-height:0;grid-template-columns:500px 499px}
- .svc.flip{grid-template-columns:499px 501px}
+ .svc-list{width:1000px;margin-top:22px;margin-left:calc(50% - 500px);margin-right:0;gap:61px}
+ .svc{height:348px;min-height:0;grid-template-columns:500px 500px}
+ .svc.flip{grid-template-columns:500px 500px}
+ #services{transition:height .6s cubic-bezier(.4,0,.2,1)}
+ #services.more-open{height:2397px}
+ .svc-more .svc-list{padding-top:61px}
  #services .cta{margin-top:46px;width:433px}
  .cta p{height:78px;display:flex;align-items:center}
  /* workshop */
@@ -266,8 +343,9 @@ section{position:relative}
  #workshops .box{width:400px;margin:-8px 0 0 calc(50% - 462px)}
  /* work */
  #work{padding:52px 0 0;height:auto;min-height:1699px}
+ #work.more-open{padding-bottom:150px}
  #work .swarm1{top:-313px;left:50%;margin-left:-961px;width:1916px;transform:none}
- #work .swarm2{top:844px;bottom:auto;left:50%;margin-left:-963px;width:1920px;transform:none}
+ #work .swarm2{top:calc(844px + var(--xw,0px));bottom:auto;left:50%;margin-left:-963px;width:1920px;transform:none;transition:top .6s cubic-bezier(.4,0,.2,1)}
  .work-in{width:1004px}
  .work-in .h2{height:78px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
  /* spotlight */
@@ -292,12 +370,11 @@ section{position:relative}
  .logos{width:683px;left:-22.5px}
  #brands .h2{position:relative;left:-22.5px}
  /* contact */
- #contact{height:542px;padding-top:56px;position:relative}
+ #contact{height:auto;padding:56px 0 48px;position:relative}
  #contact .h2{height:78px;display:flex;align-items:center;justify-content:center;margin-bottom:-15px}
- .foot{position:absolute;left:0;right:0;top:434px;margin:0;width:auto;display:block;height:44px}
- .foot .txt{position:absolute;left:calc(50% - 591px);top:12px;width:638px;white-space:nowrap}
+ .ct-grid{width:1000px}
+ .foot{margin:72px auto 0;width:1000px;display:block;text-align:center}
  .foot .sep{display:inline-block;width:22px;height:auto}
- .soc{position:absolute;left:calc(50% + 430px);top:0}
 }
 @media(min-width:1200px) and (max-width:1399px){
  /* narrower desktops: keep the dragon clear of the hero copy */
@@ -348,7 +425,7 @@ section{position:relative}
    <div class="txt">
     <h3>Product Strategy &amp; Experience Design</h3>
     <p>From complex ideas to intuitive, meaningful digital products through research, UX strategy, prototyping, interface design, and validation.</p>
-    <a class="btn" href="#contact">Read More</a>
+    <button class="btn" type="button" data-svc="0" aria-haspopup="dialog">Read More</button>
    </div>
   </article>
   <article class="svc flip">
@@ -357,7 +434,7 @@ section{position:relative}
     <!-- TODO: the Figma file repeats the first card's text in all three cards. Title/text below are read from the earlier reference; confirm. -->
     <h3>Brand Identity &amp; Creative Direction</h3>
     <p>Building distinctive brands through positioning, narrative, visual identity, creative concepts, and coherent design systems.</p>
-    <a class="btn" href="#contact">Read More</a>
+    <button class="btn" type="button" data-svc="1" aria-haspopup="dialog">Read More</button>
    </div>
   </article>
   <article class="svc">
@@ -365,11 +442,33 @@ section{position:relative}
    <div class="txt">
     <h3>AI, Motion &amp; Emerging Experiences</h3>
     <p>Expanding brands and products through AI-driven storytelling, motion, conceptual worlds, and new forms of digital experience.</p>
-    <a class="btn" href="#contact">Read More</a>
+    <button class="btn" type="button" data-svc="2" aria-haspopup="dialog">Read More</button>
    </div>
   </article>
  </div>
- <div class="cta"><p>See how our magic takes shape</p><a class="btn lg" href="#services">Services</a></div>
+<div class="svc-more" id="svc-more">
+  <div class="svc-more-in">
+   <div class="svc-list">
+    <article class="svc flip">
+     <div class="pic"><img src="assets/service-4.jpg" width="500" height="348" alt="A hand holding a phone with an AR app in front of framed photographs on a gallery wall" loading="lazy"></div>
+     <div class="txt">
+      <h3>Spatial Experiences &amp; Technology</h3>
+      <p>Designing physical spaces enriched by digital, interactive and technological experiences.</p>
+      <button class="btn" type="button" data-svc="3" aria-haspopup="dialog">Read More</button>
+     </div>
+    </article>
+    <article class="svc">
+     <div class="pic"><img src="assets/service-5.jpg" width="500" height="348" alt="Elias Sewing Thread: a sleeping stitched doll and two children running along a glowing red thread" loading="lazy"></div>
+     <div class="txt">
+      <h3>Conceptual Visual Design</h3>
+      <p>Developing visual concepts, narratives and art direction across brands, exhibitions and digital media.</p>
+      <button class="btn" type="button" data-svc="4" aria-haspopup="dialog">Read More</button>
+     </div>
+    </article>
+   </div>
+  </div>
+ </div>
+ <div class="cta"><p>See how our magic takes shape</p><div class="cta-act"><button class="btn lg" type="button" id="svc-toggle" aria-expanded="false" aria-controls="svc-more">More services</button><a class="btn lg" href="#contact" id="svc-contact" hidden>Contact us</a><button class="btn-x" type="button" id="svc-x" aria-label="Show fewer services" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div></div>
 </section>
 
 <!-- 03 · Workshop -->
@@ -388,19 +487,37 @@ section{position:relative}
   <h2 class="h2" id="work-t">Featured Projects</h2>
   <div class="projects" id="projects">
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="0"><span class="pic"><img src="assets/project-1.jpg" width="318" height="319" alt="Strauss Water project preview" loading="lazy"></span><span class="t"><strong>Strauss Water</strong>Digital product experiences connecting smart water technology with intuitive everyday use.<span class="more">View details</span></span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="1"><span class="pic"><img src="assets/project-2.jpg" width="318" height="319" alt="Emoshi project preview" loading="lazy"></span><span class="t"><strong>Emoshi</strong>An AI-powered emotional journal that transforms feelings into personal insights and daily inspiration.<span class="more">View details</span></span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="2"><span class="pic"><img src="assets/project-3.jpg" width="318" height="319" alt="DigBi project preview" loading="lazy"></span><span class="t"><strong>DigBi</strong>A design sprint and onboarding UX for a complex competitive-intelligence platform including agent design.<span class="more">View details</span></span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="0"><span class="pic"><img src="assets/project-1.jpg" width="318" height="319" alt="Strauss Water project preview" loading="lazy"></span><span class="t"><strong>Strauss Water</strong>Digital product experiences connecting smart water technology with intuitive everyday use.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="1"><span class="pic"><img src="assets/project-2.jpg" width="318" height="319" alt="Emoshi project preview" loading="lazy"></span><span class="t"><strong>Emoshi</strong>An AI-powered emotional journal that transforms feelings into personal insights and daily inspiration.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="2"><span class="pic"><img src="assets/project-3.jpg" width="318" height="319" alt="DigBi project preview" loading="lazy"></span><span class="t"><strong>DigBi</strong>A design sprint and onboarding UX for a complex competitive-intelligence platform including agent design.</span></button>
    </div>
    <div class="detail" id="detail-0" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="3"><span class="pic"><img src="assets/project-4.jpg" width="318" height="319" alt="Livia project preview" loading="lazy"></span><span class="t"><strong>Livia</strong>End-to-end brand and UX across digital marketing, social media, and physical retail.<span class="more">View details</span></span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="4"><span class="pic"><img src="assets/project-5.jpg" width="318" height="319" alt="Redefine project preview" loading="lazy"></span><span class="t"><strong>Redefine</strong>Brand and platform design for a sophisticated Web3 security solution.<span class="more">View details</span></span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="5"><span class="pic"><img src="assets/project-6.jpg" width="318" height="319" alt="Mega Sport project preview" loading="lazy"></span><span class="t"><strong>Mega Sport</strong>Full-scale branding and an online marketplace connecting multiple sports retailers.<span class="more">View details</span></span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="3"><span class="pic"><img src="assets/project-4.jpg" width="318" height="319" alt="Livia project preview" loading="lazy"></span><span class="t"><strong>Livia</strong>End-to-end brand and UX across digital marketing, social media, and physical retail.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="4"><span class="pic"><img src="assets/project-5.jpg" width="318" height="319" alt="Redefine project preview" loading="lazy"></span><span class="t"><strong>Redefine</strong>Brand and platform design for a sophisticated Web3 security solution.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="5"><span class="pic"><img src="assets/project-6.jpg" width="318" height="319" alt="Mega Sport project preview" loading="lazy"></span><span class="t"><strong>Mega Sport</strong>Full-scale branding and an online marketplace connecting multiple sports retailers.</span></button>
    </div>
    <div class="detail" id="detail-1" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
+  <div class="proj-more" id="proj-more">
+  <div class="proj-more-in">
+   <div class="prow">
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="6"><span class="pic"><img src="assets/project-7.jpg" width="318" height="319" alt="MistyBox project preview" loading="lazy"></span><span class="t"><strong>MistyBox</strong>A premium mystery-box experience for luxury watches, combining brand, product design and motion.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="7"><span class="pic"><img src="assets/project-8.jpg" width="318" height="319" alt="MOK project preview" loading="lazy"></span><span class="t"><strong>MOK</strong>Brand and product design for an NFT mining game, including its purchase platform, dashboard and in-game store.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="8"><span class="pic"><img src="assets/project-9.jpg" width="318" height="319" alt="AiGAiN project preview" loading="lazy"></span><span class="t"><strong>AiGAiN</strong>Brand and digital ecosystem for a radio-frequency home beauty device, spanning app, website and packaging.</span></button>
+   </div>
+   <div class="detail" id="detail-2" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
+   <div class="prow">
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="9"><span class="pic"><img src="assets/project-10.jpg" width="318" height="319" alt="BetterAir project preview" loading="lazy"></span><span class="t"><strong>BetterAir</strong>Brand and digital experience for probiotic air-quality technology.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="10"><span class="pic"><img src="assets/project-11.jpg" width="318" height="319" alt="WeWork project preview" loading="lazy"></span><span class="t"><strong>WeWork</strong>UX design for WeWork’s booking system, from building discovery to desk reservations and booking management.</span></button>
+    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="11"><span class="pic"><img src="assets/project-12.jpg" width="318" height="319" alt="Reset project preview" loading="lazy"></span><span class="t"><strong>Reset</strong>Branding and spatial design for Yahoo’s technology and trends event.</span></button>
+   </div>
+   <div class="detail" id="detail-3" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
   </div>
-  <div class="cta"><p>Ready to witness our fiery flight?</p><a class="btn lg" href="#work">Work</a></div>
+  </div>
+  </div>
+  <div class="cta"><p>Ready to witness our fiery flight?</p>
+   <div class="cta-act"><button class="btn lg" type="button" id="work-toggle" aria-expanded="false" aria-controls="proj-more">More work</button><a class="btn lg" href="#contact" id="work-contact" hidden>Contact us</a><button class="btn-x" type="button" id="work-x" aria-label="Show fewer projects" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
+  </div>
  </div>
 </section>
 
@@ -454,15 +571,15 @@ section{position:relative}
 <section id="brands" aria-labelledby="br-t">
  <h2 class="h2" id="br-t">Brand We Worked With</h2>
  <ul class="logos">
-  <li style="--x:10.688%;--y:7.792%;--w:9.810%"><img src="assets/logos/aol.png" alt="Aol." width="67" height="27"></li>
-  <li style="--x:47.145%;--y:10.390%;--w:4.685%"><img src="assets/logos/bcg.png" alt="BBG" width="32" height="17"></li>
-  <li style="--x:78.184%;--y:8.117%;--w:14.056%"><img src="assets/logos/brand-he-2.png" alt="Mega Sport" width="96" height="22"></li>
-  <li style="--x:10.249%;--y:46.429%;--w:8.346%"><img src="assets/logos/oath.png" alt="Oath" width="57" height="23"></li>
-  <li style="--x:40.556%;--y:44.805%;--w:17.423%"><img src="assets/logos/paypal.png" alt="PayPal" width="119" height="31"></li>
-  <li style="--x:79.209%;--y:38.961%;--w:11.859%"><img src="assets/logos/brand-he-1.png" alt="Strauss Water" width="81" height="65"></li>
-  <li style="--x:4.100%;--y:84.416%;--w:21.523%"><img src="assets/logos/techcrunch.png" alt="TechCrunch" width="147" height="21"></li>
-  <li style="--x:43.192%;--y:84.091%;--w:13.616%"><img src="assets/logos/verizon.png" alt="Verizon" width="93" height="22"></li>
-  <li style="--x:75.695%;--y:81.818%;--w:19.180%"><img src="assets/logos/wework.png" alt="WeWork" width="131" height="28"></li>
+  <li style="--x:10.688%;--y:7.792%;--w:9.810%;--mw:64"><img src="assets/logos/aol.png" alt="Aol." width="67" height="27"></li>
+  <li style="--x:47.145%;--y:10.390%;--w:4.685%;--mw:38"><img src="assets/logos/bcg.png" alt="BBG" width="32" height="17"></li>
+  <li style="--x:78.184%;--y:8.117%;--w:14.056%;--mw:88"><img src="assets/logos/brand-he-2.png" alt="Mega Sport" width="96" height="22"></li>
+  <li style="--x:10.249%;--y:46.429%;--w:8.346%;--mw:58"><img src="assets/logos/oath.png" alt="Oath" width="57" height="23"></li>
+  <li style="--x:40.556%;--y:44.805%;--w:17.423%;--mw:90"><img src="assets/logos/paypal.png" alt="PayPal" width="119" height="31"></li>
+  <li style="--x:79.209%;--y:38.961%;--w:11.859%;--mw:52"><img src="assets/logos/brand-he-1.png" alt="Strauss Water" width="81" height="65"></li>
+  <li style="--x:4.100%;--y:84.416%;--w:21.523%;--mw:96"><img src="assets/logos/techcrunch.png" alt="TechCrunch" width="147" height="21"></li>
+  <li style="--x:43.192%;--y:84.091%;--w:13.616%;--mw:80"><img src="assets/logos/verizon.png" alt="Verizon" width="93" height="22"></li>
+  <li style="--x:75.695%;--y:81.818%;--w:19.180%;--mw:88"><img src="assets/logos/wework.png" alt="WeWork" width="131" height="28"></li>
  </ul>
 </section>
 
@@ -470,19 +587,57 @@ section{position:relative}
 <section id="contact" aria-labelledby="ct-t">
  <h2 class="h2" id="ct-t">Need More Help? Contact Us</h2>
  <p class="sub">We are here to assist. Contact us here or via our social media channels.</p>
- <a class="btn lg light" href="mailto:inbaredut@gmail.com">Contact Us</a>
- <div class="foot">
-  <span class="txt"><a href="mailto:inbaredut@gmail.com">inbaredut@gmail.com</a> / <a href="tel:+972526033663">+972-526033663</a><span class="sep"></span>2024 Dragons Can Fly ©</span>
-  <!-- TODO: social icons are placeholders (Figma exports not provided); links are the real profiles -->
-  <span class="soc">
+ <div class="ct-grid">
+  <form class="ct-form" id="ct-form" action="https://formsubmit.co/inbaredut@gmail.com" method="POST" novalidate>
+   <label>Full name <b aria-hidden="true">*</b><input type="text" name="name" autocomplete="name" required aria-required="true"></label>
+   <label>Email <b aria-hidden="true">*</b><input type="email" name="email" autocomplete="email" inputmode="email" required aria-required="true"></label>
+   <label>Phone <span class="opt">(optional)</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-\(\)\.]{7,20}" title="Digits, spaces, + - ( ) only"></label>
+   <label>Subject <b aria-hidden="true">*</b><input type="text" name="subject" required aria-required="true"></label>
+   <label>Message <b aria-hidden="true">*</b><textarea name="message" rows="4" required aria-required="true"></textarea></label>
+   <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="ct-hp">
+   <input type="hidden" name="_subject" value="New message from the Dragons Can Fly website">
+   <input type="hidden" name="_template" value="table">
+   <input type="hidden" name="_captcha" value="false">
+   <div class="ct-send"><button class="btn lg light" type="submit">Send message</button><p class="ct-status" id="ct-status" role="status" aria-live="polite"></p></div>
+  </form>
+  <div class="ct-info">
+   <a class="ct-wa" href="https://wa.me/972526033663" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.600 15.100L2 22l5-1.300A10 10 0 1012 2zm0 1.800a8.200 8.200 0 11-4.200 15.200l-.3-.2-2.900.8.8-2.800-.2-.3A8.200 8.200 0 0112 3.800zM8.600 7.400c-.2 0-.5.100-.7.300-.3.300-1 1-1 2.400s1 2.700 1.200 2.900c.1.200 2 3.100 4.900 4.300 2.400 1 2.900.8 3.400.7.500 0 1.700-.7 1.900-1.400.2-.7.200-1.300.2-1.400-.1-.1-.3-.2-.6-.3l-1.900-.9c-.3-.1-.5-.1-.7.100l-.9 1.100c-.1.200-.3.200-.6.100-.3-.1-1.200-.4-2.300-1.400-.8-.8-1.400-1.700-1.600-2-.2-.3 0-.4.100-.6l.4-.5c.1-.2.2-.3.300-.5 0-.2 0-.4 0-.5l-.9-2.200c-.2-.5-.5-.5-.7-.5z"/></svg><span><strong>Chat on WhatsApp</strong>+972-52-603-3663</span></a>
+   <p class="ct-addr"><strong>Studio address</strong>P.O. Box 143, Shefayim, 60990</p>
+   <div class="ct-follow"><strong>Follow us on social media</strong>
+   <span class="soc">
    <a href="https://www.facebook.com/Dragonscanflybyinbaredut" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-1.6 19.9v-7H7.9V12h2.5V9.800c0-2.500 1.500-3.900 3.800-3.900 1.100 0 2.200.2 2.200.2v2.500h-1.300c-1.200 0-1.600.8-1.600 1.600V12h2.800l-.4 2.900h-2.400v7A10 10 0 0012 2z"/></svg></a>
    <a href="https://www.linkedin.com/company/dragonscanfly/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24"><path d="M4.500 3a2 2 0 110 4 2 2 0 010-4zM3 9h3v12H3zm6 0h3v1.700c.6-1 1.800-2 3.700-2 3.300 0 4.300 2 4.300 5V21h-3v-6c0-1.600-.4-3-2.200-3S12 13.400 12 15v6H9z"/></svg></a>
    <a href="https://www.instagram.com/dragons_can_fly_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 3.500a4.500 4.500 0 110 9 4.500 4.500 0 010-9zm0 2a2.500 2.500 0 100 5 2.500 2.500 0 000-5zM17.500 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a>
   </span>
+   </div>
+   <div class="ct-map"><iframe title="Dragons Can Fly Studio on Google Maps" src="https://www.google.com/maps?q=Dragons%20Can%20Fly%20Studio%20Shefayim&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><a href="https://maps.app.goo.gl/hGc3pS3X8B9v46ps6" target="_blank" rel="noopener noreferrer">Open in Google Maps</a></div>
+  </div>
+ </div>
+ <div class="foot">
+  <span class="txt"><a href="mailto:inbaredut@gmail.com">inbaredut@gmail.com</a> / <a href="tel:+972526033663">+972-526033663</a><span class="sep"></span>2024 Dragons Can Fly ©</span>
  </div>
 </section>
 </main>
 
+
+<!-- Services lightbox (Read More). Content is read from all .svc articles. Arrow icon "Forward" by Rainbow Designs, Noun Project. -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lb-t">
+ <div class="lb-wrap">
+  <div class="lb-card" id="lb-card">
+   <figure class="lb-pic"><img id="lb-img" src="" alt=""></figure>
+   <div class="lb-txt">
+    <p class="lb-count" id="lb-count" aria-live="polite"></p>
+    <h3 id="lb-t"></h3>
+    <p id="lb-p"></p>
+    <p class="lb-more" id="lb-more"></p>
+    <a class="btn lb-cta" href="#contact" id="lb-cta">Let's talk</a>
+   </div>
+  </div>
+  <button class="lb-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+  <button class="lb-arrow prev" type="button" aria-label="Previous service"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" d="M50,0h0A50,50,0,0,0,0,50H0a50,50,0,0,0,50,50h0a50,50,0,0,0,50-50h0A50,50,0,0,0,50,0ZM74.47,51.25l-15.8,15.8a1.77,1.77,0,0,1-2.52,0,1.81,1.81,0,0,1,0-2.52L68.93,51.78H26.76A1.78,1.78,0,0,1,25,50a1.75,1.75,0,0,1,1.76-1.77H68.93L56.15,35.44A1.77,1.77,0,1,1,58.67,33l15.8,15.8A1.73,1.73,0,0,1,74.47,51.25Z"/></svg></button>
+  <button class="lb-arrow next" type="button" aria-label="Next service"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" d="M50,0h0A50,50,0,0,0,0,50H0a50,50,0,0,0,50,50h0a50,50,0,0,0,50-50h0A50,50,0,0,0,50,0ZM74.47,51.25l-15.8,15.8a1.77,1.77,0,0,1-2.52,0,1.81,1.81,0,0,1,0-2.52L68.93,51.78H26.76A1.78,1.78,0,0,1,25,50a1.75,1.75,0,0,1,1.76-1.77H68.93L56.15,35.44A1.77,1.77,0,1,1,58.67,33l15.8,15.8A1.73,1.73,0,0,1,74.47,51.25Z"/></svg></button>
+ </div>
+</div>
 <script>
 /* ===== ITERATION 1 · mobile menu + active section in the nav ===== */
 const burger=document.querySelector('.burger'),menu=document.getElementById('menu');
@@ -505,7 +660,13 @@ const PROJECTS=[
  ['DigBi','A design sprint and onboarding UX for a complex competitive-intelligence platform including agent design.'],
  ['Livia','End-to-end brand and UX across digital marketing, social media, and physical retail.'],
  ['Redefine','Brand and platform design for a sophisticated Web3 security solution.'],
- ['Mega Sport','Full-scale branding and an online marketplace connecting multiple sports retailers.']];
+ ['Mega Sport','Full-scale branding and an online marketplace connecting multiple sports retailers.'],
+ ['MistyBox','A premium mystery-box experience for luxury watches, combining brand, product design and motion.'],
+ ['MOK','Brand and product design for an NFT mining game, including its purchase platform, dashboard and in-game store.'],
+ ['AiGAiN','Brand and digital ecosystem for a radio-frequency home beauty device, spanning app, website and packaging.'],
+ ['BetterAir','Brand and digital experience for probiotic air-quality technology.'],
+ ['WeWork','UX design for WeWork’s booking system, from building discovery to desk reservations and booking management.'],
+ ['Reset','Branding and spatial design for Yahoo’s technology and trends event.']];
 const cards=[...document.querySelectorAll('.card')],details=[...document.querySelectorAll('.detail')];
 let openIdx=-1;
 function closeAll(){details.forEach(d=>d.classList.remove('open'));cards.forEach(c=>c.setAttribute('aria-expanded','false'))}
@@ -520,6 +681,38 @@ function openProject(i){
 }
 cards.forEach((c,i)=>c.addEventListener('click',()=>openIdx===i?closeProject():openProject(i)));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
+
+/* More work (expand / collapse the extra six projects) */
+(function(){
+ var box=document.getElementById('proj-more'),t=document.getElementById('work-toggle'),c=document.getElementById('work-contact'),x=document.getElementById('work-x'),cta=document.querySelector('.work-in .cta'),sec=document.getElementById('work'),tm=null;
+ if(!box||!t)return;
+ function set(on){
+  clearTimeout(tm);
+  if(!on&&openIdx>5){openIdx=-1;closeAll()}
+  t.setAttribute('aria-expanded',on);t.hidden=on;c.hidden=!on;x.hidden=!on;
+  sec.classList.toggle('more-open',on);box.classList.toggle('open',on);sec.style.setProperty('--xw',on?box.firstElementChild.scrollHeight+'px':'0px');
+  if(on){tm=setTimeout(function(){box.classList.add('done')},700);c.focus({preventScroll:true})}
+  else{box.classList.remove('done');t.focus({preventScroll:true});
+   tm=setTimeout(function(){var r=cta.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)cta.scrollIntoView({behavior:'smooth',block:'center'})},650)}
+ }
+ t.addEventListener('click',function(){set(true)});
+ x.addEventListener('click',function(){set(false)});
+})();
+
+/* Contact form (sent to the studio email through FormSubmit) */
+(function(){
+ var f=document.getElementById('ct-form'),st=document.getElementById('ct-status');if(!f)return;
+ f.addEventListener('submit',function(e){
+  e.preventDefault();st.className='ct-status';f.classList.add('was-validated');
+  if(!f.checkValidity()){var bad=f.querySelector(':invalid');st.textContent='Please fill in your name, a valid email, a subject and a message.';st.classList.add('err');bad&&bad.focus();return}
+  var btn=f.querySelector('button[type=submit]');btn.disabled=true;st.textContent='Sending…';
+  var d={};new FormData(f).forEach(function(v,k){d[k]=v});
+  fetch('https://formsubmit.co/ajax/inbaredut@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)})
+   .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false){console.warn('FormSubmit:',j.message);throw 0}return j})})
+   .then(function(){f.reset();f.classList.remove('was-validated');st.textContent='Thank you! Your message was sent. We will get back to you soon.';btn.disabled=false})
+   .catch(function(){st.classList.add('err');st.innerHTML='Something went wrong. Please email <a href="mailto:inbaredut@gmail.com">inbaredut@gmail.com</a>.';btn.disabled=false});
+ });
+})();
 
 /* Spotlight carousel */
 (function(){
@@ -562,6 +755,74 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  go();v.addEventListener('canplay',go,{once:true});
  document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else go()});
  ['touchstart','click','scroll'].forEach(function(e){addEventListener(e,function(){if(v.paused)go()},{once:true,passive:true})});
+})();
+
+/* More services (expand / collapse rows 4-5) */
+(function(){
+ var sec=document.getElementById('services'),box=document.getElementById('svc-more'),t=document.getElementById('svc-toggle'),c=document.getElementById('svc-contact'),x=document.getElementById('svc-x'),cta=sec&&sec.querySelector('.cta');
+ if(!box||!t)return;var tm=null;
+ function set(on){
+  clearTimeout(tm);
+  t.setAttribute('aria-expanded',on);t.hidden=on;c.hidden=!on;x.hidden=!on;
+  sec.classList.toggle('more-open',on);box.classList.toggle('open',on);sec.style.setProperty('--xs',on?box.firstElementChild.scrollHeight+'px':'0px');
+  if(on){tm=setTimeout(function(){box.classList.add('done')},700);c.focus({preventScroll:true})}
+  else{box.classList.remove('done');t.focus({preventScroll:true});
+   tm=setTimeout(function(){var r=cta.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)cta.scrollIntoView({behavior:'smooth',block:'center'})},650)}
+ }
+ t.addEventListener('click',function(){set(true)});
+ x.addEventListener('click',function(){set(false)});
+})();
+
+/* Services lightbox */
+(function(){
+ var lb=document.getElementById('lb');if(!lb)return;
+ var arts=[].slice.call(document.querySelectorAll('.svc')),i=0,opener=null;
+ var card=document.getElementById('lb-card'),img=document.getElementById('lb-img');
+ var t=document.getElementById('lb-t'),p=document.getElementById('lb-p'),more=document.getElementById('lb-more'),cnt=document.getElementById('lb-count');
+ function fill(n){
+  var a=arts[n],src=a.querySelector('img');
+  img.src=src.currentSrc||src.src;img.alt=src.alt;
+  t.textContent=a.querySelector('h3').textContent;
+  p.textContent=a.querySelector('.txt p').textContent;
+  var extra=a.getAttribute('data-more');more.textContent=extra||'More details coming soon.';
+  cnt.textContent=(n+1)+' / '+arts.length;
+ }
+ function go(n){
+  n=(n+arts.length)%arts.length;
+  card.classList.add('swap');
+  setTimeout(function(){i=n;fill(i);card.scrollTop=0;card.classList.remove('swap')},170);
+ }
+ function open(n,from){
+  opener=from||null;i=n;fill(i);lb.hidden=false;
+  document.documentElement.classList.add('lb-lock');
+  requestAnimationFrame(function(){lb.classList.add('open');lb.querySelector('.lb-x').focus({preventScroll:true})});
+ }
+ function close(){
+  lb.classList.remove('open');document.documentElement.classList.remove('lb-lock');
+  setTimeout(function(){lb.hidden=true},360);
+  if(opener)opener.focus({preventScroll:true});
+ }
+ document.querySelectorAll('[data-svc]').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-svc'),b)})});
+ lb.querySelector('.lb-x').addEventListener('click',close);
+ lb.querySelector('.prev').addEventListener('click',function(){go(i-1)});
+ lb.querySelector('.next').addEventListener('click',function(){go(i+1)});
+ lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-wrap'))close()});
+ document.getElementById('lb-cta').addEventListener('click',function(){opener=null;close()});
+ document.addEventListener('keydown',function(e){
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape'){close()}
+  else if(e.key==='ArrowLeft'){go(i-1)}
+  else if(e.key==='ArrowRight'){go(i+1)}
+  else if(e.key==='Tab'){
+   var f=[].slice.call(lb.querySelectorAll('button,a[href]')).filter(function(x){return x.offsetParent!==null});
+   if(!f.length)return;var a=f[0],z=f[f.length-1];
+   if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+   else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+  }
+ });
+ var x0=null;
+ card.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+ card.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(d)>50)go(i+(d<0?1:-1))});
 })();
 </script>
 </body>
