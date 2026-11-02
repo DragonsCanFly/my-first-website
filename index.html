@@ -108,6 +108,14 @@ section{position:relative}
 #workshops p{font-size:clamp(22px,5vw,30px);line-height:1.2;font-weight:600;color:var(--dark);text-shadow:0 0 14px rgba(255,255,255,.55)}
 #workshops p+p{margin-top:36px}
 #workshops .box{width:auto;margin:30px 6% 40px}
+@media(max-width:599px){
+ #workshops{position:relative}
+ #workshops:before{aspect-ratio:884/1250;background-size:auto 120%;background-position:70% calc(48% + var(--wp,35%)*.5)}
+ #workshops br{display:none}
+ #workshops .box{position:absolute;left:47%;right:3%;top:9%;width:auto;margin:0}
+ #workshops p{font-size:clamp(14px,4.2vw,21px);line-height:1.35;color:#000;text-shadow:0 0 10px rgba(255,255,255,.35)}
+ #workshops p+p{margin-top:1.1em}
+}
 
 /* ---------- 04 Featured projects ---------- */
 #work{z-index:3;padding:52px 0 150px;scroll-margin-top:calc(var(--hdr) - 22px)}
@@ -164,7 +172,7 @@ section{position:relative}
 .sp-in{position:relative;z-index:1;width:min(872px,92%);margin:0 auto;display:flex;flex-direction:column;align-items:center}
 .sp-in .h2{color:#dddee2;margin-bottom:15px}
 .sp-pic{display:block;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s}
-.sp-slide img{display:block;width:100%;aspect-ratio:872/561;object-fit:cover;transition:transform .6s ease}
+.sp-slide img{display:block;width:100%;height:auto;aspect-ratio:872/561;object-fit:cover;transition:transform .6s ease}
 .sp-pic:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.45),0 0 0 1px rgba(222,223,223,.18)}
 .sp-pic:hover img{transform:scale(1.05)}
 @media(hover:none){.sp-pic:hover{transform:none;box-shadow:none}.sp-pic:hover img{transform:none}}
@@ -179,12 +187,22 @@ section{position:relative}
 .sp-dots button:hover:before{opacity:.7}
 .sp-dots button.is-on:before{opacity:1;transform:scale(1.15)}
 .sp-dots button:focus-visible{outline:2px solid #dedfdf;border-radius:50%}
-.sp-arrow{position:absolute;top:calc(min(872px,92vw)*.2805);transform:translateY(-50%);width:40px;height:40px;padding:0;border:0;border-radius:50%;background:rgba(35,31,32,.35);color:#dedfdf;cursor:pointer;display:grid;place-items:center;transition:transform .2s,background .2s,color .2s}
+.sp-arrow{position:absolute;top:calc(min(872px,92vw)*.3217);transform:translateY(-50%);width:40px;height:40px;padding:0;border:0;border-radius:50%;background:rgba(35,31,32,.35);color:#dedfdf;cursor:pointer;display:grid;place-items:center;transition:transform .2s,background .2s,color .2s}
 .sp-arrow svg{width:100%;height:100%;display:block}
 .sp-arrow.prev{left:10px}.sp-arrow.prev svg{transform:scaleX(-1)}
 .sp-arrow.next{right:10px}
 .sp-arrow:hover{background:rgba(35,31,32,.6);color:#fff;transform:translateY(-50%) scale(1.08)}
 .sp-arrow:focus-visible,.sp-car:focus-visible{outline:2px solid #dedfdf;outline-offset:3px}
+/* phones: arrows sit at the image's vertical centre, nudge sideways once, then disappear (swipe + dots remain) */
+@media(max-width:760px){
+ .sp-arrow{opacity:0;pointer-events:none}
+ .sp-car.hint .sp-arrow{pointer-events:auto}
+ .sp-car.hint .sp-arrow.prev{animation:spHintL 2.8s ease-in-out 1 both}
+ .sp-car.hint .sp-arrow.next{animation:spHintR 2.8s ease-in-out 1 both}
+}
+@keyframes spHintL{0%{opacity:0;transform:translate(0,-50%)}12%{opacity:1;transform:translate(0,-50%)}30%{transform:translate(-12px,-50%)}48%{transform:translate(0,-50%)}66%{opacity:1;transform:translate(-12px,-50%)}100%{opacity:0;transform:translate(-4px,-50%)}}
+@keyframes spHintR{0%{opacity:0;transform:translate(0,-50%)}12%{opacity:1;transform:translate(0,-50%)}30%{transform:translate(12px,-50%)}48%{transform:translate(0,-50%)}66%{opacity:1;transform:translate(12px,-50%)}100%{opacity:0;transform:translate(4px,-50%)}}
+@media(prefers-reduced-motion:reduce){.sp-car.hint .sp-arrow{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.sp-slide,.sp-slide.is-on{transition:none}}
 .sp-cap{margin-top:50px;max-width:418px;text-align:center;text-shadow:0 0 12px var(--dark),0 0 4px var(--dark)}
 .sp-cap strong{display:block;font-size:16px;font-weight:600}
@@ -309,6 +327,13 @@ html.lb-lock{overflow:hidden}
 .pv-txt .pv-more{opacity:.6;font-size:13px}
 .pv-txt .btn{margin-top:8px;padding:11px 26px;font-size:13px}
 html.lb-lock{overflow:hidden}
+.pv .sp-arrow{z-index:3;top:calc(100vw*var(--ar,.348)/2)}
+@media(max-width:760px){
+ .pv.hint .sp-arrow{pointer-events:auto}
+ .pv.hint .sp-arrow.prev{animation:spHintL 2.8s ease-in-out 1 both}
+ .pv.hint .sp-arrow.next{animation:spHintR 2.8s ease-in-out 1 both}
+}
+@media(prefers-reduced-motion:reduce){.pv.hint .sp-arrow{animation:none!important}}
 @media(min-width:761px){.pv{display:none!important}}
 @media(prefers-reduced-motion:reduce){.pv{transition:none}}
 
@@ -505,7 +530,7 @@ html.lb-lock{overflow:hidden}
 <!-- 03 · Workshop -->
 <section id="workshops" aria-label="Workshops">
  <div class="box">
-  <p>We understand Dragons. Worked for, led,<br>and grew them.</p>
+  <p>We understand Dragons. Worked for, led, <br>and grew them.</p>
   <p>Now, we teach how to become one.</p>
  </div>
 </section>
@@ -681,6 +706,8 @@ html.lb-lock{overflow:hidden}
  <button class="pv-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
  <p class="pv-count" id="pv-count" aria-live="polite"></p>
  <div class="pv-track" id="pv-track"></div>
+ <button class="sp-arrow prev" type="button" aria-label="Previous"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" d="M50,0h0A50,50,0,0,0,0,50H0a50,50,0,0,0,50,50h0a50,50,0,0,0,50-50h0A50,50,0,0,0,50,0ZM74.47,51.25l-15.8,15.8a1.77,1.77,0,0,1-2.52,0,1.81,1.81,0,0,1,0-2.52L68.93,51.78H26.76A1.78,1.78,0,0,1,25,50a1.75,1.75,0,0,1,1.76-1.77H68.93L56.15,35.44A1.77,1.77,0,1,1,58.67,33l15.8,15.8A1.73,1.73,0,0,1,74.47,51.25Z"/></svg></button>
+ <button class="sp-arrow next" type="button" aria-label="Next"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" d="M50,0h0A50,50,0,0,0,0,50H0a50,50,0,0,0,50,50h0a50,50,0,0,0,50-50h0A50,50,0,0,0,50,0ZM74.47,51.25l-15.8,15.8a1.77,1.77,0,0,1-2.52,0,1.81,1.81,0,0,1,0-2.52L68.93,51.78H26.76A1.78,1.78,0,0,1,25,50a1.75,1.75,0,0,1,1.76-1.77H68.93L56.15,35.44A1.77,1.77,0,1,1,58.67,33l15.8,15.8A1.73,1.73,0,0,1,74.47,51.25Z"/></svg></button>
 </div>
 <script>
 /* ===== ITERATION 1 · mobile menu + active section in the nav ===== */
@@ -801,12 +828,14 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  function open(kind,n,from){
   var items=kind==='proj'?projItems():svcItems();total=items.length;build(items);opener=from||null;
   pv.hidden=false;root.classList.add('lb-lock');
+  pv.style.setProperty('--ar',kind==='proj'?'1':'.696');pv.classList.remove('hint');
   requestAnimationFrame(function(){
    pv.classList.add('open');track.scrollLeft=n*track.clientWidth;upd();x.focus({preventScroll:true});
+   if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){if(pv.classList.contains('open'))pv.classList.add('hint')},550);
   });
   try{history.pushState({pv:1},'');pushed=true}catch(e){pushed=false}
  }
- function hide(){pv.classList.remove('open');root.classList.remove('lb-lock');setTimeout(function(){if(!pv.classList.contains('open'))pv.hidden=true},420);if(opener){opener.focus({preventScroll:true});opener=null}}
+ function hide(){pv.classList.remove('open');pv.classList.remove('hint');root.classList.remove('lb-lock');setTimeout(function(){if(!pv.classList.contains('open'))pv.hidden=true},420);if(opener){opener.focus({preventScroll:true});opener=null}}
  function close(silent){
   if(pushed){pushed=false;if(silent)opener=null;try{history.back()}catch(e){hide()}}
   else{if(silent)opener=null;hide()}
@@ -814,6 +843,8 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  addEventListener('popstate',function(){if(pv.classList.contains('open')){pushed=false;hide()}});
  track.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(upd)},{passive:true});
  x.addEventListener('click',function(){close()});
+ pv.querySelector('.sp-arrow.prev').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth,behavior:'smooth'})});
+ pv.querySelector('.sp-arrow.next').addEventListener('click',function(){track.scrollBy({left:track.clientWidth,behavior:'smooth'})});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pv.classList.contains('open'))close()});
  window.__pvOpen=open;
 })();
@@ -831,6 +862,9 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  var x0=null;
  car.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
  car.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(d)>40)show(i+(d<0?1:-1))});
+ if(window.matchMedia('(max-width:760px)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){car.classList.add('hint');io.disconnect()}},{threshold:.35});io.observe(car);
+ }
 })();
 
 /* Workshop photo parallax: the image is taller than the band, so it drifts slower than the page */
