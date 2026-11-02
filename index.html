@@ -291,6 +291,27 @@ html.lb-lock{overflow:hidden}
 @media(max-width:1180px){.lb-arrow.prev{left:10px}.lb-arrow.next{right:10px}.lb-arrow{top:min(26vw,170px);top:min(26vw,190px)}}
 @media(max-width:820px){.lb{align-items:start;padding-top:max(16px,env(safe-area-inset-top,0px))}.lb-card{grid-template-columns:1fr}.lb-pic{min-height:0;aspect-ratio:500/348}.lb-txt{padding:26px 22px 30px}.lb-arrow{width:40px;height:40px;margin-top:-20px;top:calc((100vw - 40px) * .348)}}
 @media(prefers-reduced-motion:reduce){.lb,.lb-card{transition:none}}
+/* mobile full-page viewer */
+.pv{position:fixed;inset:0;z-index:310;background:#f4f2f0;color:var(--dark);opacity:0;visibility:hidden;transform:translateY(22px);transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1),visibility 0s .4s}
+.pv[hidden]{display:block}
+.pv.open{opacity:1;visibility:visible;transform:none;transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+.pv-x{position:absolute;top:max(12px,env(safe-area-inset-top,0px));right:12px;z-index:4;width:40px;height:40px;border:0;border-radius:50%;background:rgba(35,31,32,.62);color:#fff;display:grid;place-items:center;padding:0;cursor:pointer}
+.pv-x svg{width:16px;height:16px;display:block}
+.pv-count{position:absolute;top:max(20px,calc(env(safe-area-inset-top,0px) + 8px));left:16px;z-index:4;margin:0;padding:4px 12px;border-radius:20px;background:rgba(35,31,32,.62);color:#fff;font-size:12px;letter-spacing:.1em;line-height:1.5}
+.pv-track{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pv-track::-webkit-scrollbar{display:none}
+.pv-slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow-y:auto;overscroll-behavior:contain}
+.pv-slide figure{margin:0;width:100%;background:#555}
+.pv-slide img{display:block;width:100%;height:100%;object-fit:cover}
+.pv-txt{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:26px 22px 56px}
+.pv-txt h3{font-size:22px;line-height:1.25}
+.pv-txt p{font-size:15px;line-height:1.7}
+.pv-txt .pv-more{opacity:.6;font-size:13px}
+.pv-txt .btn{margin-top:8px;padding:11px 26px;font-size:13px}
+html.lb-lock{overflow:hidden}
+@media(min-width:761px){.pv{display:none!important}}
+@media(prefers-reduced-motion:reduce){.pv{transition:none}}
+
 
 /* ============ Breakpoints ============
    Mobile portrait  : up to 599px  (designed at 390)
@@ -497,29 +518,29 @@ html.lb-lock{overflow:hidden}
   <h2 class="h2" id="work-t">Featured Projects</h2>
   <div class="projects" id="projects">
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="0"><span class="pic"><img src="assets/project-1.jpg" width="318" height="319" alt="Strauss Water project preview" loading="lazy"></span><span class="t"><strong>Strauss Water</strong>Digital product experiences connecting smart water technology with intuitive everyday use.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="1"><span class="pic"><img src="assets/project-2.jpg" width="318" height="319" alt="Emoshi project preview" loading="lazy"></span><span class="t"><strong>Emoshi</strong>An AI-powered emotional journal that transforms feelings into personal insights and daily inspiration.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-0" data-i="2"><span class="pic"><img src="assets/project-3.jpg" width="318" height="319" alt="DigBi project preview" loading="lazy"></span><span class="t"><strong>DigBi</strong>A design sprint and onboarding UX for a complex competitive-intelligence platform including agent design.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="0"><span class="pic"><img src="assets/project-1.jpg" width="318" height="319" alt="Strauss Water project preview" loading="lazy"></span><span class="t"><strong>Strauss Water</strong>Digital product experiences connecting smart water technology with intuitive everyday use.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="1"><span class="pic"><img src="assets/project-2.jpg" width="318" height="319" alt="Emoshi project preview" loading="lazy"></span><span class="t"><strong>Emoshi</strong>An AI-powered emotional journal that transforms feelings into personal insights and daily inspiration.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="2"><span class="pic"><img src="assets/project-3.jpg" width="318" height="319" alt="DigBi project preview" loading="lazy"></span><span class="t"><strong>DigBi</strong>A design sprint and onboarding UX for a complex competitive-intelligence platform including agent design.</span></button>
    </div>
    <div class="detail" id="detail-0" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="3"><span class="pic"><img src="assets/project-4.jpg" width="318" height="319" alt="Livia project preview" loading="lazy"></span><span class="t"><strong>Livia</strong>End-to-end brand and UX across digital marketing, social media, and physical retail.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="4"><span class="pic"><img src="assets/project-5.jpg" width="318" height="319" alt="Redefine project preview" loading="lazy"></span><span class="t"><strong>Redefine</strong>Brand and platform design for a sophisticated Web3 security solution.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-1" data-i="5"><span class="pic"><img src="assets/project-6.jpg" width="318" height="319" alt="Mega Sport project preview" loading="lazy"></span><span class="t"><strong>Mega Sport</strong>Full-scale branding and an online marketplace connecting multiple sports retailers.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="3"><span class="pic"><img src="assets/project-4.jpg" width="318" height="319" alt="Livia project preview" loading="lazy"></span><span class="t"><strong>Livia</strong>End-to-end brand and UX across digital marketing, social media, and physical retail.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="4"><span class="pic"><img src="assets/project-5.jpg" width="318" height="319" alt="Redefine project preview" loading="lazy"></span><span class="t"><strong>Redefine</strong>Brand and platform design for a sophisticated Web3 security solution.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="5"><span class="pic"><img src="assets/project-6.jpg" width="318" height="319" alt="Mega Sport project preview" loading="lazy"></span><span class="t"><strong>Mega Sport</strong>Full-scale branding and an online marketplace connecting multiple sports retailers.</span></button>
    </div>
    <div class="detail" id="detail-1" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
   <div class="proj-more" id="proj-more">
   <div class="proj-more-in">
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="6"><span class="pic"><img src="assets/project-7.jpg" width="318" height="319" alt="MistyBox project preview" loading="lazy"></span><span class="t"><strong>MistyBox</strong>A premium mystery-box experience for luxury watches, combining brand, product design and motion.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="7"><span class="pic"><img src="assets/project-8.jpg" width="318" height="319" alt="MOK project preview" loading="lazy"></span><span class="t"><strong>MOK</strong>Brand and product design for an NFT mining game, including its purchase platform, dashboard and in-game store.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-2" data-i="8"><span class="pic"><img src="assets/project-9.jpg" width="318" height="319" alt="AiGAiN project preview" loading="lazy"></span><span class="t"><strong>AiGAiN</strong>Brand and digital ecosystem for a radio-frequency home beauty device, spanning app, website and packaging.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="6"><span class="pic"><img src="assets/project-7.jpg" width="318" height="319" alt="MistyBox project preview" loading="lazy"></span><span class="t"><strong>MistyBox</strong>A premium mystery-box experience for luxury watches, combining brand, product design and motion.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="7"><span class="pic"><img src="assets/project-8.jpg" width="318" height="319" alt="MOK project preview" loading="lazy"></span><span class="t"><strong>MOK</strong>Brand and product design for an NFT mining game, including its purchase platform, dashboard and in-game store.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="8"><span class="pic"><img src="assets/project-9.jpg" width="318" height="319" alt="AiGAiN project preview" loading="lazy"></span><span class="t"><strong>AiGAiN</strong>Brand and digital ecosystem for a radio-frequency home beauty device, spanning app, website and packaging.</span></button>
    </div>
    <div class="detail" id="detail-2" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
    <div class="prow">
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="9"><span class="pic"><img src="assets/project-10.jpg" width="318" height="319" alt="BetterAir project preview" loading="lazy"></span><span class="t"><strong>BetterAir</strong>Brand and digital experience for probiotic air-quality technology.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="10"><span class="pic"><img src="assets/project-11.jpg" width="318" height="319" alt="WeWork project preview" loading="lazy"></span><span class="t"><strong>WeWork</strong>UX design for WeWork’s booking system, from building discovery to desk reservations and booking management.</span></button>
-    <button class="card" type="button" aria-expanded="false" aria-controls="detail-3" data-i="11"><span class="pic"><img src="assets/project-12.jpg" width="318" height="319" alt="Reset project preview" loading="lazy"></span><span class="t"><strong>Reset</strong>Branding and spatial design for Yahoo’s technology and trends event.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="9"><span class="pic"><img src="assets/project-10.jpg" width="318" height="319" alt="BetterAir project preview" loading="lazy"></span><span class="t"><strong>BetterAir</strong>Brand and digital experience for probiotic air-quality technology.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="10"><span class="pic"><img src="assets/project-11.jpg" width="318" height="319" alt="WeWork project preview" loading="lazy"></span><span class="t"><strong>WeWork</strong>UX design for WeWork’s booking system, from building discovery to desk reservations and booking management.</span></button>
+    <button class="card" type="button" aria-haspopup="dialog" data-i="11"><span class="pic"><img src="assets/project-12.jpg" width="318" height="319" alt="Reset project preview" loading="lazy"></span><span class="t"><strong>Reset</strong>Branding and spatial design for Yahoo’s technology and trends event.</span></button>
    </div>
    <div class="detail" id="detail-3" role="region" aria-live="polite" aria-label="Project details"><div></div></div>
   </div>
@@ -655,6 +676,12 @@ html.lb-lock{overflow:hidden}
   <button class="lb-arrow next" type="button" aria-label="Next service"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" d="M50,0h0A50,50,0,0,0,0,50H0a50,50,0,0,0,50,50h0a50,50,0,0,0,50-50h0A50,50,0,0,0,50,0ZM74.47,51.25l-15.8,15.8a1.77,1.77,0,0,1-2.52,0,1.81,1.81,0,0,1,0-2.52L68.93,51.78H26.76A1.78,1.78,0,0,1,25,50a1.75,1.75,0,0,1,1.76-1.77H68.93L56.15,35.44A1.77,1.77,0,1,1,58.67,33l15.8,15.8A1.73,1.73,0,0,1,74.47,51.25Z"/></svg></button>
  </div>
 </div>
+<!-- Mobile full-page viewer (services + projects): swipe left/right between items, X to close -->
+<div class="pv" id="pv" hidden role="dialog" aria-modal="true" aria-label="Details">
+ <button class="pv-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+ <p class="pv-count" id="pv-count" aria-live="polite"></p>
+ <div class="pv-track" id="pv-track"></div>
+</div>
 <script>
 /* ===== ITERATION 1 · mobile menu + active section in the nav ===== */
 const burger=document.querySelector('.burger'),menu=document.getElementById('menu');
@@ -696,7 +723,7 @@ function openProject(i){
  d.classList.add('open');
  setTimeout(()=>{const r=d.getBoundingClientRect();if(r.bottom>innerHeight-20||r.top<90)d.scrollIntoView({behavior:'smooth',block:'center'})},480);
 }
-cards.forEach((c,i)=>c.addEventListener('click',()=>openIdx===i?closeProject():openProject(i)));
+cards.forEach((c,i)=>c.addEventListener('click',()=>{window.__lbOpen?window.__lbOpen('proj',i,c):window.__pvOpen&&window.__pvOpen('proj',i,c)}));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
 
 /* More work (expand / collapse the extra six projects) */
@@ -746,6 +773,49 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
    })})
    .catch(function(err){console.warn('FormSubmit network error:',err);fail(d,location.protocol==='file:'?'open the live site, not the local file':'network error');done()});
  });
+})();
+
+/* Mobile full-page viewer for services and projects */
+(function(){
+ var pv=document.getElementById('pv');if(!pv)return;
+ var track=document.getElementById('pv-track'),cnt=document.getElementById('pv-count'),x=pv.querySelector('.pv-x');
+ var opener=null,total=0,pushed=false,raf=0,root=document.documentElement;
+ function svcItems(){return [].slice.call(document.querySelectorAll('.svc')).map(function(a){var im=a.querySelector('img');return{src:im.currentSrc||im.src,alt:im.alt,t:a.querySelector('h3').textContent,p:a.querySelector('.txt p').textContent,m:a.getAttribute('data-more')||'More details coming soon.',r:'500/348'}})}
+ function projItems(){return PROJECTS.map(function(p,i){return{src:'assets/project-'+(i+1)+'.jpg',alt:p[0]+' project',t:p[0],p:p[1],m:'Full case study to be added.',r:'1/1'}})}
+ function build(items){
+  track.textContent='';
+  items.forEach(function(it,k){
+   var s=document.createElement('section');s.className='pv-slide';s.setAttribute('aria-label',(k+1)+' of '+items.length);
+   var f=document.createElement('figure');f.style.aspectRatio=it.r;
+   var im=document.createElement('img');im.src=it.src;im.alt=it.alt;im.decoding='async';f.appendChild(im);
+   var d=document.createElement('div');d.className='pv-txt';
+   var h=document.createElement('h3');h.textContent=it.t;
+   var p=document.createElement('p');p.textContent=it.p;
+   var m=document.createElement('p');m.className='pv-more';m.textContent=it.m;
+   var a=document.createElement('a');a.className='btn';a.href='#contact';a.textContent="Let's talk";
+   a.addEventListener('click',function(e){e.preventDefault();close(true);setTimeout(function(){var c=document.getElementById('contact');c&&c.scrollIntoView({behavior:'smooth'})},120)});
+   d.appendChild(h);d.appendChild(p);d.appendChild(m);d.appendChild(a);s.appendChild(f);s.appendChild(d);track.appendChild(s);
+  });
+ }
+ function upd(){var w=track.clientWidth||1,i=Math.min(total-1,Math.max(0,Math.round(track.scrollLeft/w)));cnt.textContent=(i+1)+' / '+total}
+ function open(kind,n,from){
+  var items=kind==='proj'?projItems():svcItems();total=items.length;build(items);opener=from||null;
+  pv.hidden=false;root.classList.add('lb-lock');
+  requestAnimationFrame(function(){
+   pv.classList.add('open');track.scrollLeft=n*track.clientWidth;upd();x.focus({preventScroll:true});
+  });
+  try{history.pushState({pv:1},'');pushed=true}catch(e){pushed=false}
+ }
+ function hide(){pv.classList.remove('open');root.classList.remove('lb-lock');setTimeout(function(){if(!pv.classList.contains('open'))pv.hidden=true},420);if(opener){opener.focus({preventScroll:true});opener=null}}
+ function close(silent){
+  if(pushed){pushed=false;if(silent)opener=null;try{history.back()}catch(e){hide()}}
+  else{if(silent)opener=null;hide()}
+ }
+ addEventListener('popstate',function(){if(pv.classList.contains('open')){pushed=false;hide()}});
+ track.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(upd)},{passive:true});
+ x.addEventListener('click',function(){close()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pv.classList.contains('open'))close()});
+ window.__pvOpen=open;
 })();
 
 /* Spotlight carousel */
@@ -807,36 +877,38 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  x.addEventListener('click',function(){set(false)});
 })();
 
-/* Services lightbox */
+/* Lightbox for services and projects (tablet + desktop; phones use the full-page viewer) */
 (function(){
  var lb=document.getElementById('lb');if(!lb)return;
- var arts=[].slice.call(document.querySelectorAll('.svc')),i=0,opener=null;
+ var items=[],i=0,opener=null;
  var card=document.getElementById('lb-card'),img=document.getElementById('lb-img');
  var t=document.getElementById('lb-t'),p=document.getElementById('lb-p'),more=document.getElementById('lb-more'),cnt=document.getElementById('lb-count');
+ function svcItems(){return [].slice.call(document.querySelectorAll('.svc')).map(function(a){var im=a.querySelector('img');return{src:im.currentSrc||im.src,alt:im.alt,t:a.querySelector('h3').textContent,p:a.querySelector('.txt p').textContent,m:a.getAttribute('data-more')||'More details coming soon.'}})}
+ function projItems(){return PROJECTS.map(function(q,k){return{src:'assets/project-'+(k+1)+'.jpg',alt:q[0]+' project',t:q[0],p:q[1],m:'Full case study to be added.'}})}
  function fill(n){
-  var a=arts[n],src=a.querySelector('img');
-  img.src=src.currentSrc||src.src;img.alt=src.alt;
-  t.textContent=a.querySelector('h3').textContent;
-  p.textContent=a.querySelector('.txt p').textContent;
-  var extra=a.getAttribute('data-more');more.textContent=extra||'More details coming soon.';
-  cnt.textContent=(n+1)+' / '+arts.length;
+  var a=items[n];
+  img.src=a.src;img.alt=a.alt;t.textContent=a.t;p.textContent=a.p;more.textContent=a.m;
+  cnt.textContent=(n+1)+' / '+items.length;
  }
  function go(n){
-  n=(n+arts.length)%arts.length;
+  n=(n+items.length)%items.length;
   card.classList.add('swap');
   setTimeout(function(){i=n;fill(i);card.scrollTop=0;card.classList.remove('swap')},170);
  }
- function open(n,from){
+ function open(kind,n,from){
+  if(window.matchMedia('(max-width:760px)').matches&&window.__pvOpen){window.__pvOpen(kind,n,from);return}
+  items=kind==='proj'?projItems():svcItems();
   opener=from||null;i=n;fill(i);lb.hidden=false;
   document.documentElement.classList.add('lb-lock');
   requestAnimationFrame(function(){lb.classList.add('open');lb.querySelector('.lb-x').focus({preventScroll:true})});
  }
+ window.__lbOpen=open;
  function close(){
   lb.classList.remove('open');document.documentElement.classList.remove('lb-lock');
   setTimeout(function(){lb.hidden=true},360);
   if(opener)opener.focus({preventScroll:true});
  }
- document.querySelectorAll('[data-svc]').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-svc'),b)})});
+ document.querySelectorAll('[data-svc]').forEach(function(b){b.addEventListener('click',function(){open('svc',+b.getAttribute('data-svc'),b)})});
  lb.querySelector('.lb-x').addEventListener('click',close);
  lb.querySelector('.prev').addEventListener('click',function(){go(i-1)});
  lb.querySelector('.next').addEventListener('click',function(){go(i+1)});
