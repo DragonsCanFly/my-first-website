@@ -220,7 +220,8 @@ section{position:relative}
 .ct-left{position:relative}
 .ct-done{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px;outline:0;animation:ctIn .6s cubic-bezier(.2,.8,.2,1) both}
 .ct-done[hidden]{display:none}
-.ct-done h3{font-size:clamp(24px,3vw,32px);line-height:1.2;color:#fff}
+.ct-done h3{font-size:24px;line-height:1.62;font-weight:600;color:#fff}
+@media(max-width:760px){.ct-done h3{font-size:20px}}
 .ct-done p{font-size:16px;line-height:1.7;max-width:44ch}
 #contact .ct-done .btn{width:auto;min-width:135px;margin-top:12px}
 @keyframes ctIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -611,7 +612,7 @@ html.lb-lock{overflow:hidden}
    <div class="ct-send"><button class="btn lg light" type="submit">Send message</button><p class="ct-status" id="ct-status" role="status" aria-live="polite"></p></div>
   </form>
   <div class="ct-done" id="ct-done" hidden tabindex="-1">
-   <h3>Your message has taken flight!</h3>
+   <h3>Your message has<br>taken flight!</h3>
    <p>Thank you for reaching out! We’re excited to hear about your idea and can’t wait to discover where it might lead. We’ll be in touch soon.</p>
    <button class="btn lg light" type="button" id="ct-again">Send another message</button>
   </div>
