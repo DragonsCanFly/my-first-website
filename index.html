@@ -62,6 +62,8 @@ section{position:relative}
 
 /* ============ Layers (decorative images) — base = small screens ============ */
 .layer{position:absolute;max-width:none;height:auto;pointer-events:none;user-select:none}
+.swarmv{background:transparent;object-fit:fill}
+#services .swarmv,#work .swarmv,#about .swarmv{-webkit-mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent);mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
 .z0{z-index:0}.z1{position:relative;z-index:1}
 
 /* ---------- 01 Hero ---------- */
@@ -168,7 +170,7 @@ section{position:relative}
 
 /* ---------- 05 Spotlight ---------- */
 #spotlight{z-index:5;background:var(--dark);color:var(--gray);padding:56px 0 72px;overflow:hidden;scroll-margin-top:calc(var(--hdr) - 24px)}
-#spotlight .sp-swarm{left:-30%;top:-10%;width:130%;transform:rotate(-19.18deg);opacity:.9;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 62%);mask-image:linear-gradient(180deg,#000 30%,transparent 62%)}
+#spotlight .sp-swarm{left:-30%;top:-10%;width:130%;transform:rotate(-19.18deg);opacity:.9;-webkit-mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,#000 30%,transparent 62%);mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,#000 30%,transparent 62%);-webkit-mask-composite:source-in,source-in;mask-composite:intersect,intersect}
 .sp-in{position:relative;z-index:1;width:min(872px,92%);margin:0 auto;display:flex;flex-direction:column;align-items:center}
 .sp-in .h2{color:#dddee2;margin-bottom:15px}
 .sp-pic{display:block;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s}
@@ -407,7 +409,7 @@ html.lb-lock{overflow:hidden}
  /* spotlight */
  #spotlight{height:901px;padding:49px 0 0}
  #spotlight .sp-stage{position:absolute;left:50%;top:0;width:1920px;height:901px;margin-left:-960px;pointer-events:none}
- #spotlight .sp-swarm{left:395px;top:485px;width:1906px;transform:translate(-50%,-50%) rotate(-19.18deg) scale(.858);opacity:1;-webkit-mask-image:none;mask-image:none}
+ #spotlight .sp-swarm{left:395px;top:485px;width:1906px;transform:translate(-50%,-50%) rotate(-19.18deg) scale(.858);opacity:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent);mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent),linear-gradient(180deg,transparent,#000 1.5%,#000 98.5%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
  .sp-in{width:872px}
  .sp-arrow{top:280.5px;width:48px;height:48px;background:none}
  .sp-arrow.prev{left:-84px}.sp-arrow.next{right:-84px}
@@ -473,7 +475,7 @@ html.lb-lock{overflow:hidden}
 
 <!-- 02 · Services -->
 <section id="services" aria-labelledby="services-t">
- <img class="layer swarm z0" src="assets/swarm-services.jpg" width="1920" height="1526" alt="" aria-hidden="true">
+ <video class="layer swarm swarmv z0" data-src="assets/swarm-services.mp4" poster="assets/swarm-services-poster.jpg" width="1350" height="1080" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
  <h2 class="h2 z1" id="services-t">How Ideas Fly?</h2>
  <div class="svc-list">
   <article class="svc">
@@ -537,8 +539,8 @@ html.lb-lock{overflow:hidden}
 
 <!-- 04 · Featured projects -->
 <section id="work" aria-labelledby="work-t">
- <img class="layer swarm1 z0" src="assets/swarm-work-1.jpg" width="1916" height="1157" alt="" aria-hidden="true" loading="lazy">
- <img class="layer swarm2 z0" src="assets/swarm-work-2.jpg" width="1920" height="1025" alt="" aria-hidden="true" loading="lazy">
+ <video class="layer swarm1 swarmv z0" data-src="assets/swarm-work-1.mp4" poster="assets/swarm-work-1-poster.jpg" width="2560" height="1536" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
+ <video class="layer swarm2 swarmv z0" data-src="assets/swarm-work-2.mp4" poster="assets/swarm-work-2-poster.jpg" width="1918" height="1026" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
  <div class="work-in">
   <h2 class="h2" id="work-t">Featured Projects</h2>
   <div class="projects" id="projects">
@@ -579,7 +581,7 @@ html.lb-lock{overflow:hidden}
 
 <!-- 05 · Spotlight -->
 <section id="spotlight" aria-labelledby="sp-t">
- <div class="sp-stage" aria-hidden="true"><img class="layer sp-swarm" src="assets/swarm-spotlight.webp" width="1906" height="1761" alt="" loading="lazy"></div>
+ <div class="sp-stage" aria-hidden="true"><video class="layer sp-swarm swarmv" data-src="assets/swarm-spotlight.mp4" poster="assets/swarm-spotlight-poster.jpg" width="1392" height="1078" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video></div>
  <div class="sp-in">
   <!-- Figma text on this title says "Featured Projects"; shown as Spotlight to match the nav. Confirm. -->
   <h2 class="h2" id="sp-t">Spotlight</h2>
@@ -606,7 +608,7 @@ html.lb-lock{overflow:hidden}
 
 <!-- 06 · About -->
 <section id="about" aria-labelledby="ab-t">
- <img class="layer swarm z0" src="assets/swarm-about.webp" width="1203" height="1186" alt="" aria-hidden="true" loading="lazy">
+ <video class="layer swarm swarmv z0" data-src="assets/swarm-about.mp4" poster="assets/swarm-about-poster.jpg" width="1080" height="1080" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
  <div class="ab-in">
   <h2 class="h2" id="ab-t">Behind Dragons</h2>
   <p class="sub">We help ambitious ideas spread their wings—through strategy, product design, branding, and emerging technology.</p>
@@ -847,6 +849,22 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&openIdx>-1)closeProject()});
  pv.querySelector('.sp-arrow.next').addEventListener('click',function(){track.scrollBy({left:track.clientWidth,behavior:'smooth'})});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pv.classList.contains('open'))close()});
  window.__pvOpen=open;
+})();
+
+/* Swarm animations: load when near the screen, play only while visible */
+(function(){
+ var vids=[].slice.call(document.querySelectorAll('video.swarmv'));if(!vids.length)return;
+ var still=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
+ if(still||!('IntersectionObserver' in window))return;
+ var io=new IntersectionObserver(function(en){en.forEach(function(e){
+  var v=e.target;
+  if(e.isIntersecting){
+   if(!v.getAttribute('src')){v.src=v.getAttribute('data-src');v.load()}
+   var p=v.play();if(p&&p.catch)p.catch(function(){});
+  }else if(v.getAttribute('src')){v.pause()}
+ })},{rootMargin:'300px 0px'});
+ vids.forEach(function(v){io.observe(v)});
+ document.addEventListener('visibilitychange',function(){if(document.hidden)vids.forEach(function(v){v.pause()})});
 })();
 
 /* Spotlight carousel */
